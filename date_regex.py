@@ -85,7 +85,7 @@ def naive_score_date(possibility, len_matches):
     # Prioritize large indices
     score += (1 / (1 + len_matches - possibility["index"])) * 30
 
-    return round(score, 2)
+    return round(score, 2) / 300
 
 def get_month_from_name(name):
     if name in specialMonths:

@@ -61,7 +61,9 @@ def test_regex(text: str, verbose=False):
         print("Total matches:")
         print(total_scores)
 
-    date = date_scores[0][1]
-    total = total_scores[0][1]
+    date = date_scores[0]
+    total = total_scores[0]
 
     return date, total
+
+print(test_regex(''))
