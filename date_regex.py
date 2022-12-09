@@ -47,32 +47,32 @@ def get_sep_score(sep1, sep2, good_seps):
     if sep1 in good_seps:
         if (sep1 == sep2):
             return 30
-        
+
         if sep2 in good_seps:
             return 5
         else:
             return 10
-    
+
     if sep2 in good_seps:
         return 10
-    
+
     return 0
 
 def get_digit_score(is_day_one_digit, is_month_one_digit):
     if (is_day_one_digit and is_month_one_digit):
         return 20
-    
+
     if (not is_day_one_digit and not is_month_one_digit):
         return 40
 
     if (is_day_one_digit):
         return 10
-    
+
     return 0
 
 def naive_score_date(possibility, len_matches):
     # Generate score based on whether the date is close to the current date (in an exponential )
-    
+
     n_days_diff = (datetime.now() - possibility['date']).days + 1
     score = (1 / (1 + n_days_diff)) * 100
     score += 100 if possibility['has_time'] else 0
@@ -94,7 +94,7 @@ def get_month_from_name(name):
     possible_months = [i+1 for i, monthName in enumerate(monthNamesFrNoAccent) if name in monthName]
     if len(possible_months) > 0:
         return possible_months[0]
-    
+
     raise Exception(f'Invalid month name {name}')
 
 def parse_datetime(match):
@@ -102,7 +102,7 @@ def parse_datetime(match):
     day = int(match.group('day'))
     is_month_name = match.group('month') is None
     month = 6 if match.group('month_name') == 'jun' else (get_month_from_name(match.group('month_name')) if is_month_name else int(match.group('month')))
-    
+
 
     is_month_one_digit = len(match.group('month')) == 1 if not is_month_name else False
     year = int(match.group('year'))
@@ -112,7 +112,7 @@ def parse_datetime(match):
             year = 2000 + year
         else:
             year = 1900 + year
-    
+
     # print(f'Parsed date {year}-{month}-{day} (day one digit: {is_day_one_digit}, month name: {is_month_name})')
     if match.group('time') is not None:
         hours = int(match.group('hour'))
