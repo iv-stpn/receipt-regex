@@ -49,7 +49,7 @@ def test_regex(text: str, verbose=False):
             "has_currency": has_currency,
             "sep_decimal": sep_decimal,
             "index": i,
-        }), total_amount))
+        }, len(total_matches)), total_amount))
 
 
     date_scores = sorted(possible_dates, key=lambda x: x[0], reverse=True)
@@ -65,5 +65,3 @@ def test_regex(text: str, verbose=False):
     total = total_scores[0]
 
     return date, total
-
-print(test_regex(''))
