@@ -65,3 +65,8 @@ def test_regex(text: str, verbose=False):
     total = total_scores[0]
 
     return date, total
+
+test_regex("""
+u -‘|L Rue l‘{ÔTenr 13 lâzà—-°‘ä-"’3"œ “Ï‘.'.“.:: ,}'yr_u.m« t‘O1(6,+ 3, "":.',n 4, \ P— ‘."““‘.»;«::e.?'ÈFÈË... d‘on éééc ”IICT EA … 71 95 'ﬂMÈL“ n”ä}ü erI £ : 7 MESER :«:£ e + — +4 : 9753 '—"OŒ.A d wup . féféc rt \ » 2.50— —L‘FIt BŒue 1 n e EM EROLLETTE > + 9,55 3 IHÎ54"ÈW I . POLLET . mr :1 VOLATLLE FRANÇATEE ‘, 14 tn 3 ”TOJAL ÎIÜ(E[ d » % 27.35 F ur rrre t r rmc ﬁe » . . … tp tm= c ” s— de rine os TTLe r DT/|& ‘T‘rre qée —-.;‘;,--‘;.__ 27 . 35— . FUR ATL‘TVA s pu ‘“'":«"'"—’--._--—« * l’°“" "" , î\ à WA‘ vfg !. â4 ® 3 Ë; 133 , 0 Bdﬂc.,ll‘l E(I‘°' tri g k2, 437 35‘È\ä 1__‘î_Pr lt(:.)oV Sip. Â‘r.kot ©94325 — .( __,.- _l .............. Vois : resté 2 v131t954 d pOX èbl0qœr votre œuinté fluth” 2..) ” Ces.ta tusn io lft” 1
+""", True
+)

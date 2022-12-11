@@ -317,13 +317,19 @@ def ocr_document(image, lang="fra", width=600):
     end_time = time.time()
     print("Scanner effect time: ", end_time - start_time)
 
-    start_time = time.time()
-    tesseract_result = pytesseract.image_to_string(image, lang=lang)
-    end_time = time.time()
+
+    data = pytesseract.image_to_data(image, lang=lang,output_type="dict")
+    words = data["text"]
+
+    # remove empty strings
+    irrelevant_indices = [idx for idx, word in enumerate(words) if not word.strip()]
+    words = [word for idx, word in enumerate(words) if idx not in irrelevant_indices]
+
+    words = " ".join(words)
 
     print("Tesseract time: ", end_time - start_time)
 
-    return tesseract_result,image
+    return words ,image
 
 # We create a downloads directory within the streamlit static asset directory
 # and we write output files to it
@@ -385,9 +391,10 @@ if uploaded_file is not None:
             # OCR the document
             start_time = time.time()
             result,scanned_img = ocr_document(final, lang = language_dict[lang])
+            # result,scanned_img = ocr_document(image, lang = language_dict[lang])
             end_time = time.time()
             print("OCR Time: ", end_time - start_time)
-            st.image(scanned_img, use_column_width=True)
+            st.image(scanned_img,channels="BGR", use_column_width=True)
             st.title("OCR Output")
             st.write(result)
             st.title("Regex Output")

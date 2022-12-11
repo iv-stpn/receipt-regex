@@ -122,6 +122,3 @@ def parse_datetime(match):
         return datetime(year, month, day, hours, minutes, seconds), is_day_one_digit, is_month_one_digit, is_month_name, True
 
     return datetime(year, month, day), is_day_one_digit, is_month_one_digit, is_month_name, False
-
-
-print(regex_date_suffix_time)
